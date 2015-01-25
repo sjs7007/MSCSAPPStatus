@@ -7,6 +7,7 @@ def getResult(universityName,url,userName,password):
 		logLevel=int(sys.argv[1])
 
 	b = mechanize.Browser()
+	b.set_handle_robots(False)
 	
 	r1 = b.open(url)
 
@@ -14,7 +15,7 @@ def getResult(universityName,url,userName,password):
 		b.select_form(name="frmApplicantConnectLogin")
 		b["UserID"]=userName
 		b["Password"]=password		
-	elif(universityName=="ASU"):
+	elif(universityName=="ASU" or universityName=="TAMU"):
 		b.select_form(nr=0)
 		b["username"]=userName
 		b["password"]=password
@@ -26,6 +27,8 @@ def getResult(universityName,url,userName,password):
 		b.select_form(name="loginForm")
 		b["txtUserID"]=userName
 		b["txtPassword"]=password
+	elif(universityName=="TAMU"):
+		result= s[s.find('class="highlight">')+18:s.find(" </span>\r\n")-3]
 
 	if(logLevel>=1):
 		print universityName,"login in progress..."
@@ -66,6 +69,9 @@ def getResult(universityName,url,userName,password):
 	elif(universityName=="NEU"):
 		result= s[s.find("Status")+1:s.find(" <img")]
 		result=result[7:]
+	elif(universityName=="TAMU"):
+		result= s[s.find('class="highlight">')+18:s.find(" </span>\r\n")-3]
+
 
 	print universityName,"Status :",result
 	print "----x----"
@@ -87,6 +93,9 @@ vtechPass=""
 neuUserName=""
 neuPass=""
 
+tamuUserName=""
+tamuPass=""
+
 if(len(purdueUserName)>0):
 	getResult("Purdue","https://app.applyyourself.com/AYApplicantLogin/fl_ApplicantConnectLogin.asp?id=purduegrad",purdueUserName,purduePass) 
 
@@ -101,3 +110,6 @@ if(len(vtechUserName)>0):
 
 if(len(neuUserName)>0):
 	getResult("NEU","https://app.applyyourself.com/AYApplicantLogin/fl_ApplicantConnectLogin.asp?id=neu-grad",neuUserName,neuPass)
+
+if(len(tamuUserName)>0):
+	getResult("TAMU","https://cas.tamu.edu/cas/login?service=https://applicant.tamu.edu/Account/Login",tamuUserName,tamuPass)

@@ -7,6 +7,7 @@ Currently it supports the following universities:
 + Suny Stony Brook
 + Virginia Tech.
 + North Eastern
++ TAMU
 
 Python Requirements:
 + [Mechanize](https://pypi.python.org/pypi/mechanize/)
