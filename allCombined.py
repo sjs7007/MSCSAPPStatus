@@ -103,8 +103,8 @@ neuPass=""
 tamuUserName=""
 tamuPass=""
 
-ucsdUserName="marmikpandya@gmail.com"
-ucsdPass="Marmik@92"
+ucsdUserName=""
+ucsdPass=""
 
 if(len(purdueUserName)>0):
 	getResult("Purdue","https://app.applyyourself.com/AYApplicantLogin/fl_ApplicantConnectLogin.asp?id=purduegrad",purdueUserName,purduePass) 
