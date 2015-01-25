@@ -8,6 +8,7 @@ Currently it supports the following universities:
 + Virginia Tech.
 + North Eastern
 + TAMU
++ UCSD, thanks to [marmikcfc](https://github.com/marmikcfc)
 
 Python Requirements:
 + [Mechanize](https://pypi.python.org/pypi/mechanize/)
