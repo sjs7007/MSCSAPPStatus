@@ -29,6 +29,10 @@ def getResult(universityName,url,userName,password):
 		b["txtPassword"]=password
 	elif(universityName=="TAMU"):
 		result= s[s.find('class="highlight">')+18:s.find(" </span>\r\n")-3]
+	elif(universityName=="UCSD"):
+		b.select_form(nr=1)
+		b["aemail"]=userName
+		b["apass"]=password
 
 	if(logLevel>=1):
 		print universityName,"login in progress..."
@@ -71,6 +75,9 @@ def getResult(universityName,url,userName,password):
 		result=result[7:]
 	elif(universityName=="TAMU"):
 		result= s[s.find('class="highlight">')+18:s.find(" </span>\r\n")-3]
+	elif(universityName=="UCSD"):
+		result= s[s.find('<span class="value"><span class="Good">')+1:s.find("</span></span>")]
+		result=result[38:]
 
 
 	print universityName,"Status :",result
@@ -96,6 +103,9 @@ neuPass=""
 tamuUserName=""
 tamuPass=""
 
+ucsdUserName=""
+ucsdPass=""
+
 if(len(purdueUserName)>0):
 	getResult("Purdue","https://app.applyyourself.com/AYApplicantLogin/fl_ApplicantConnectLogin.asp?id=purduegrad",purdueUserName,purduePass) 
 
@@ -113,3 +123,6 @@ if(len(neuUserName)>0):
 
 if(len(tamuUserName)>0):
 	getResult("TAMU","https://cas.tamu.edu/cas/login?service=https://applicant.tamu.edu/Account/Login",tamuUserName,tamuPass)
+
+if(len(ucsdUserName)>0):
+	getResult("UCSD","https://gradapply.ucsd.edu/account/index.php?node=d56b699830e77ba53855679cb1d252da",ucsdUserName,ucsdPass)
