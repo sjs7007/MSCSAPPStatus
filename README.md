@@ -13,7 +13,7 @@ Python Requirements:
 
 ### Running Application
 
-1. Just checking application status without any log. 
+1.Just checking application status without any log. 
 ```python allCombined.py```
 
 Sample Output:
@@ -31,8 +31,58 @@ NEU Status : Submitted
 ----x----
 ```
 
-2. Application status with log.
+2.Application status with log.
 ```python allCombined.py 1```
 
-3. Application status with log + saving html of logged in webpage.
+Sample Output:
+
+```
+Purdue login in progress...
+logged in successfully...
+Purdue Status : Under Review
+----x----
+ASU login in progress...
+logged in successfully...
+ASU Status : In Review
+----x----
+SUNYSB login in progress...
+logged in successfully...
+SUNYSB Status : Submitted
+----x----
+vtech login in progress...
+logged in successfully...
+vtech Status : In Review
+----x----
+NEU login in progress...
+logged in successfully...
+NEU Status : Submitted
+----x----
+```
+
+3.Application status with log + saving html of logged in webpage.
 ```python allCombined.py 2```
+
+```
+Purdue login in progress...
+logged in successfully...
+Purdue Status : Under Review
+----x----
+ASU login in progress...
+logged in successfully...
+ASU Status : In Review
+----x----
+SUNYSB login in progress...
+logged in successfully...
+SUNYSB Status : Submitted
+----x----
+vtech login in progress...
+logged in successfully...
+vtech Status : In Review
+----x----
+NEU login in progress...
+logged in successfully...
+NEU Status : Submitted
+----x----
+```
+
++ html files generated.
