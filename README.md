@@ -16,6 +16,21 @@ Python Requirements:
 1. Just checking application status without any log. 
 ```python allCombined.py```
 
+Sample Output:
+
+```
+Purdue Status : Under Review
+----x----
+ASU Status : In Review
+----x----
+SUNYSB Status : Submitted
+----x----
+vtech Status : In Review
+----x----
+NEU Status : Submitted
+----x----
+```
+
 2. Application status with log.
 ```python allCombined.py 1```
 
