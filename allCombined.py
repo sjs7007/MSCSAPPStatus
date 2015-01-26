@@ -3,22 +3,27 @@ import sys
 
 def getResult(universityName,url,userName,password):
 	logLevel=0 #by default no log
+	getType=0 #0-admission status, 1-document status
+	UniversityStatusPrint=True #if get type=1 make it false
 	if(len(sys.argv)>1):
 		logLevel=int(sys.argv[1])
+	if(len(sys.argv)>2):
+		getType=int(sys.argv[2])
 
 	b = mechanize.Browser()
 	b.set_handle_robots(False)
 	
 	r1 = b.open(url)
 
-	if(universityName=="Purdue"):
+	if(universityName=="Purdue" or (universityName=="NEU" and getType==0)):
 		b.select_form(name="frmApplicantConnectLogin")
 		b["UserID"]=userName
 		b["Password"]=password
-	elif(universityName=="NEU"):
+	elif(universityName=="NEU" and getType==1):
 		b.select_form(name="Form1")
 		b["txtUserName"]=userName
-		b["txtPassword"]=password	
+		b["txtPassword"]=password
+		UniversityStatusPrint=False
 	elif(universityName=="ASU" or universityName=="TAMU"):
 		b.select_form(nr=0)
 		b["username"]=userName
@@ -82,14 +87,19 @@ def getResult(universityName,url,userName,password):
 		result= s[s.find("Status")+1:s.find(" <img")]
 		result=result[7:]
 	elif(universityName=="NEU"):
-		processNEUResult(result)
+		if(getType==0):
+			result= s[s.find("Status")+1:s.find(" <img")]
+			result=result[7:]
+		elif(getType==1):
+			processNEUResult(result)
 	elif(universityName=="TAMU"):
 		result= s[s.find('class="highlight">')+18:s.find(" </span>\r\n")-3]
 	elif(universityName=="UCSD"):
 		result= s[s.find('<span class="value"><span class="Good">')+1:s.find("</span></span>")]
 		result=result[38:]
 		
-	print universityName,"Status :",result
+	if(UniversityStatusPrint):
+		print universityName,"Status :",result
 	print "----x----"
 
 	
@@ -97,7 +107,7 @@ def processNEUResult(result) :
 	if not "<span class=\"green\"> Application Submitted</span>" in result:
 		print "Application Submitted: False"
 	else:
-		print "Applicaation Submitted: True"
+		print "Application Submitted: True"
 		
 	if not "<span class=\"green\"> App Materials Received</span>" in result:
 		print "Application Materials Received: False"
@@ -149,7 +159,10 @@ if(len(vtechUserName)>0):
 	getResult("vtech","https://gradapp.stl.vt.edu/pages/login.php",vtechUserName,vtechPass)
 
 if(len(neuUserName)>0):
-	getResult("NEU","https://neugrad.askadmissions.net/vip/Default.aspx",neuUserName,neuPass)
+	if(len(sys.argv)>2): #check document status
+		getResult("NEU","https://neugrad.askadmissions.net/vip/Default.aspx",neuUserName,neuPass)
+	else: #just check admit status
+		getResult("NEU","https://app.applyyourself.com/AYApplicantLogin/fl_ApplicantConnectLogin.asp?id=neu-grad",neuUserName,neuPass)
 
 if(len(tamuUserName)>0):
 	getResult("TAMU","https://cas.tamu.edu/cas/login?service=https://applicant.tamu.edu/Account/Login",tamuUserName,tamuPass)

@@ -16,7 +16,7 @@ Python Requirements:
 
 ### Running Application
 
-1.Just checking application status without any log. 
+1.Just checking application decision status without any log. 
 ```python allCombined.py```
 
 Sample Output:
@@ -89,3 +89,19 @@ NEU Status : Submitted
 ```
 
 \+ html files generated.
+
+4.Application status along with document status.
+
+Currently only document status of North Eastern supported.
+
+```python allCombined.py <logLevel> 1```
+
+Sample Output: 
+
+```
+Application Submitted: False
+Application Materials Received: False
+Decision Ready: False
+```
+
+``````
