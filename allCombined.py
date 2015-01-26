@@ -24,7 +24,7 @@ def getResult(universityName,url,userName,password):
 		b["txtUserName"]=userName
 		b["txtPassword"]=password
 		UniversityStatusPrint=False
-	elif(universityName=="ASU" or universityName=="TAMU"):
+	elif(universityName=="ASU" or universityName=="TAMU" or universityName=="UFL"):
 		b.select_form(nr=0)
 		b["username"]=userName
 		b["password"]=password
@@ -99,7 +99,9 @@ def getResult(universityName,url,userName,password):
 	elif(universityName=="UCSD"):
 		result= s[s.find('<span class="value"><span class="Good">')+1:s.find("</span></span>")]
 		result=result[38:]
-		
+	elif(universityName=="UFL"):
+		result=s[s.find('Admission Decision</span>: </td><td style="border: 0; width: 60%">')+66:s.find('Admission Decision</span>: </td><td style="border: 0; width: 60%">')+81]	
+
 	if(UniversityStatusPrint):
 		print universityName,"Status :",result
 	print "----x----"
@@ -148,6 +150,9 @@ ucsdPass=""
 uscUserName=""
 uscPass=""
 
+uflUserName=""
+uflPass=""
+
 if(len(purdueUserName)>0):
 	getResult("Purdue","https://app.applyyourself.com/AYApplicantLogin/fl_ApplicantConnectLogin.asp?id=purduegrad",purdueUserName,purduePass) 
 
@@ -174,3 +179,6 @@ if(len(ucsdUserName)>0):
 
 if(len(uscUserName)>0):
         getResult("USC","https://app.applyyourself.com/AYApplicantLogin/fl_ApplicantLogin.asp?id=usc-grad",uscUserName,uscPass)
+
+if(len(uflUserName)>0):
+        getResult("UFL","https://www.cise.ufl.edu/academics/grad/prospective/gait/index.php",uflUserName,uflPass)
