@@ -91,6 +91,8 @@ def getResult(universityName,url,userName,password):
 			result= s[s.find("Status")+1:s.find(" <img")]
 			result=result[7:]
 		elif(getType==1):
+			result= s[s.find("Status")+1:s.find(" <img")]
+			result=result[7:]
 			processNEUResult(result)
 	elif(universityName=="TAMU"):
 		result= s[s.find('class="highlight">')+18:s.find(" </span>\r\n")-3]
