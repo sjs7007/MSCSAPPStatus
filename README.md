@@ -92,7 +92,7 @@ NEU Status : Submitted
 
 4.Application status along with document status.
 
-Currently only document status of North Eastern supported.
+Currently only document status of Northeastern University is supported.
 
 ```python allCombined.py <logLevel> 1```
 
