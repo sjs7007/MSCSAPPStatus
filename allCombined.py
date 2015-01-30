@@ -169,8 +169,9 @@ if(len(neuUserName)>0):
 	'''if(len(sys.argv)>2): #check document status
 		getResult("NEU","https://neugrad.askadmissions.net/vip/Default.aspx",neuUserName,neuPass)
 	else: #just check admit status
-	'''	
-	getResult("NEU","https://app.applyyourself.com/AYApplicantLogin/fl_ApplicantConnectLogin.asp?id=neu-grad",neuUserName,neuPass)
+		getResult("NEU","https://app.applyyourself.com/AYApplicantLogin/fl_ApplicantConnectLogin.asp?id=neu-grad",neuUserName,neuPass)
+	'''
+	getResult("NEU","https://neugrad.askadmissions.net/vip/Default.aspx",neuUserName,neuPass)
 
 if(len(tamuUserName)>0):
 	getResult("TAMU","https://cas.tamu.edu/cas/login?service=https://applicant.tamu.edu/Account/Login",tamuUserName,tamuPass)
