@@ -91,17 +91,3 @@ NEU Status : Submitted
 
 \+ html files generated.
 
-4.Application status along with document status.
-
-Currently only document status of Northeastern University is supported.
-
-```python allCombined.py <logLevel> 1```
-
-Sample Output: 
-
-```
-Application Submitted: False
-Application Materials Received: False
-Decision Ready: False
-```
-
