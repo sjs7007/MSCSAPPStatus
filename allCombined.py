@@ -3,7 +3,6 @@ import sys
 
 def getResult(universityName,url,userName,password):
 	logLevel=0 #by default no log
-	getType=0 #0-admission status, 1-document status
 	UniversityStatusPrint=True #if get type=1 make it false
 	if(len(sys.argv)>1):
 		logLevel=int(sys.argv[1])
@@ -15,11 +14,11 @@ def getResult(universityName,url,userName,password):
 	
 	r1 = b.open(url)
 
-	if(universityName=="Purdue" or (universityName=="NEU" and getType==0)):
+	if(universityName=="Purdue"):
 		b.select_form(name="frmApplicantConnectLogin")
 		b["UserID"]=userName
 		b["Password"]=password
-	elif(universityName=="NEU" and getType==1):
+	elif(universityName=="NEU"):
 		b.select_form(name="Form1")
 		b["txtUserName"]=userName
 		b["txtPassword"]=password
@@ -87,13 +86,9 @@ def getResult(universityName,url,userName,password):
 		result= s[s.find("Status")+1:s.find(" <img")]
 		result=result[7:]
 	elif(universityName=="NEU"):
-		if(getType==0):
-			result= s[s.find("Status")+1:s.find(" <img")]
-			result=result[7:]
-		elif(getType==1):
-			result= s[s.find("Status")+1:s.find(" <img")]
-			result=result[7:]
-			processNEUResult(result)
+		result= s[s.find("Status")+1:s.find(" <img")]
+		result=result[7:]
+		processNEUResult(result)
 	elif(universityName=="TAMU"):
 		result= s[s.find('class="highlight">')+18:s.find(" </span>\r\n")-3]
 	elif(universityName=="UCSD"):
@@ -123,6 +118,7 @@ def processNEUResult(result) :
 	else:
 		print "Decision Ready: True"
 	
+
 
 # Fill details of the universities of which you want to check status. Keep the rest as it is. 
 
