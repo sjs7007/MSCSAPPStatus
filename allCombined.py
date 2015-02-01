@@ -2,6 +2,8 @@ import mechanize
 import sys
 
 def getResult(universityName,url,userName,password):
+	if(len(userName)==0):
+		return
 	logLevel=0 #by default no log
 	UniversityStatusPrint=True #if get type=1 make it false
 	if(len(sys.argv)>1):
@@ -149,34 +151,13 @@ uscPass=""
 uflUserName=""
 uflPass=""
 
-if(len(purdueUserName)>0):
-	getResult("Purdue","https://app.applyyourself.com/AYApplicantLogin/fl_ApplicantConnectLogin.asp?id=purduegrad",purdueUserName,purduePass) 
 
-if(len(asuUserName)>0):
-	getResult("ASU","https://webapp4.asu.edu/myasu/",asuUserName,asuPass) 
-
-if(len(sunySBUserName)>0):
-	getResult("SUNYSB","https://app.applyyourself.com/ayapplicantlogin/fl_ApplicantLogin.asp?ID=sunysb-gs#tab2",sunySBUserName,sunySBPass)
-
-if(len(vtechUserName)>0):
-	getResult("vtech","https://gradapp.stl.vt.edu/pages/login.php",vtechUserName,vtechPass)
-
-if(len(neuUserName)>0):
-	'''if(len(sys.argv)>2): #check document status
-		getResult("NEU","https://neugrad.askadmissions.net/vip/Default.aspx",neuUserName,neuPass)
-	else: #just check admit status
-		getResult("NEU","https://app.applyyourself.com/AYApplicantLogin/fl_ApplicantConnectLogin.asp?id=neu-grad",neuUserName,neuPass)
-	'''
-	getResult("NEU","https://neugrad.askadmissions.net/vip/Default.aspx",neuUserName,neuPass)
-
-if(len(tamuUserName)>0):
-	getResult("TAMU","https://cas.tamu.edu/cas/login?service=https://applicant.tamu.edu/Account/Login",tamuUserName,tamuPass)
-
-if(len(ucsdUserName)>0):
-	getResult("UCSD","https://gradapply.ucsd.edu/account/index.php?node=d56b699830e77ba53855679cb1d252da",ucsdUserName,ucsdPass)
-
-if(len(uscUserName)>0):
-        getResult("USC","https://app.applyyourself.com/AYApplicantLogin/fl_ApplicantLogin.asp?id=usc-grad",uscUserName,uscPass)
-
-if(len(uflUserName)>0):
-        getResult("UFL","https://www.cise.ufl.edu/academics/grad/prospective/gait/index.php",uflUserName,uflPass)
+getResult("Purdue","https://app.applyyourself.com/AYApplicantLogin/fl_ApplicantConnectLogin.asp?id=purduegrad",purdueUserName,purduePass) 
+getResult("ASU","https://webapp4.asu.edu/myasu/",asuUserName,asuPass) 
+getResult("SUNYSB","https://app.applyyourself.com/ayapplicantlogin/fl_ApplicantLogin.asp?ID=sunysb-gs#tab2",sunySBUserName,sunySBPass)
+getResult("vtech","https://gradapp.stl.vt.edu/pages/login.php",vtechUserName,vtechPass)
+getResult("NEU","https://neugrad.askadmissions.net/vip/Default.aspx",neuUserName,neuPass)
+getResult("TAMU","https://cas.tamu.edu/cas/login?service=https://applicant.tamu.edu/Account/Login",tamuUserName,tamuPass)
+getResult("UCSD","https://gradapply.ucsd.edu/account/index.php?node=d56b699830e77ba53855679cb1d252da",ucsdUserName,ucsdPass)
+getResult("USC","https://app.applyyourself.com/AYApplicantLogin/fl_ApplicantLogin.asp?id=usc-grad",uscUserName,uscPass)
+getResult("UFL","https://www.cise.ufl.edu/academics/grad/prospective/gait/index.php",uflUserName,uflPass)
