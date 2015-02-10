@@ -49,6 +49,10 @@ def getResult(universityName,url,userName,password):
         b.select_form(nr=0)
         b["UserID"]=userName
         b["Password"]=password
+    elif(universityName=="UCI"):
+        b.select_form(nr=0)
+        b["login[email]"]=userName
+        b["login[password]"]=password
 
     if(logLevel>=1):
         print universityName,"login in progress..."
@@ -99,7 +103,12 @@ def getResult(universityName,url,userName,password):
         result= s[s.find('<span class="value"><span class="Good">')+1:s.find("</span></span>")]
         result=result[38:]
     elif(universityName=="UFL"):
-        result=s[s.find('Admission Decision</span>: </td><td style="border: 0; width: 60%">')+66:s.find('Admission Decision</span>: </td><td style="border: 0; width: 60%">')+81]   
+        result=s[s.find('Admission Decision</span>: </td><td style="border: 0; width: 60%">')+66:s.find('Admission Decision</span>: </td><td style="border: 0; width: 60%">')+81]
+    elif(universityName=="UCI"):
+        result_start_index = s.find('Your application status is: ')+31
+        result_start = s[result_start_index:]
+        result_end_index = result_start.find('</b>')
+        result= result_start[:result_end_index]
 
     if(UniversityStatusPrint):
         print universityName,"Status :",result
@@ -152,6 +161,10 @@ uscPass=""
 uflUserName=""
 uflPass=""
 
+#UCI gats tracker email and password
+uciUserName=""
+uciPass=""
+
 class myThread (threading.Thread):
     def __init__(self, threadID, universityName, url, userName, password):
         threading.Thread.__init__(self)
@@ -173,6 +186,7 @@ thread6 = myThread(6,"TAMU","https://cas.tamu.edu/cas/login?service=https://appl
 thread7 = myThread(7,"UCSD","https://gradapply.ucsd.edu/account/index.php?node=d56b699830e77ba53855679cb1d252da",ucsdUserName,ucsdPass)
 thread8 = myThread(8,"USC","https://app.applyyourself.com/AYApplicantLogin/fl_ApplicantLogin.asp?id=usc-grad",uscUserName,uscPass)
 thread9 = myThread(9,"UFL","https://www.cise.ufl.edu/academics/grad/prospective/gait/index.php",uflUserName,uflPass)
+thread10 = myThread(10,"UCI","https://gats.ics.uci.edu/tracker/",uciUserName,uciPass)
 
 
 # Start new Threads
@@ -185,4 +199,5 @@ thread6.start()
 thread7.start()
 thread8.start()
 thread9.start()
+thread10.start()
 

@@ -11,6 +11,7 @@ Currently it supports the following universities:
 + UCSD, thanks to [marmikcfc](https://github.com/marmikcfc)
 + USC, thanks to [Hell-91](https://github.com/Hell-91)
 + UFL
++ UCI
 
 Python Requirements:
 + [Mechanize](https://pypi.python.org/pypi/mechanize/)
