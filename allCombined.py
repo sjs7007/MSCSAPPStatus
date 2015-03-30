@@ -45,7 +45,7 @@ def getResult(universityName,url,userName,password):
         b.select_form(nr=1)
         b["aemail"]=userName
         b["apass"]=password
-    elif(universityName=="USC"):
+    elif(universityName=="USC" or universityName=="UNC"):
         b.select_form(nr=0)
         b["UserID"]=userName
         b["Password"]=password
@@ -53,7 +53,7 @@ def getResult(universityName,url,userName,password):
         b.select_form(nr=0)
         b["login[email]"]=userName
         b["login[password]"]=password
-
+	
     if(logLevel>=1):
         print universityName,"login in progress..."
     r2 = b.submit()
@@ -90,7 +90,7 @@ def getResult(universityName,url,userName,password):
     elif(universityName=="vtech"):
         result= s[s.find('tableBottomBorder">')+1:s.find('<br><div class="info">')]
         result=result[-9:]
-    elif(universityName=="USC"):
+    elif(universityName=="USC" or universityName=="UNC"):
         result= s[s.find("Status")+1:s.find(" <img")]
         result=result[7:]
     elif(universityName=="NEU"):
@@ -165,6 +165,11 @@ uflPass=""
 uciUserName=""
 uciPass=""
 
+#UNC pin and password
+uncUserName=""
+uncPass=""
+
+
 class myThread (threading.Thread):
     def __init__(self, threadID, universityName, url, userName, password):
         threading.Thread.__init__(self)
@@ -187,7 +192,7 @@ thread7 = myThread(7,"UCSD","https://gradapply.ucsd.edu/account/index.php?node=d
 thread8 = myThread(8,"USC","https://app.applyyourself.com/AYApplicantLogin/fl_ApplicantLogin.asp?id=usc-grad",uscUserName,uscPass)
 thread9 = myThread(9,"UFL","https://www.cise.ufl.edu/academics/grad/prospective/gait/index.php",uflUserName,uflPass)
 thread10 = myThread(10,"UCI","https://gats.ics.uci.edu/tracker/",uciUserName,uciPass)
-
+thread11 = myThread(11,"UNC","https://app.applyyourself.com/AYApplicantLogin/fl_ApplicantLogin.asp?id=unc-ch",uncUserName,uncPass)
 
 # Start new Threads
 thread1.start()
@@ -200,4 +205,4 @@ thread7.start()
 thread8.start()
 thread9.start()
 thread10.start()
-
+thread11.start()
