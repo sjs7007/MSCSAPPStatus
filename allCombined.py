@@ -175,7 +175,6 @@ uciPass=""
 uncUserName=""
 uncPass=""
 
-
 umntcUsername = ""
 umntcPassword = ""
 
